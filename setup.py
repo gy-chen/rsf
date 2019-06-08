@@ -10,10 +10,7 @@ with open("rsf/__init__.py", "r") as f:
     else:
         version = "0.0.1"
 
-REQUIRES = [
-    'python-dotenv',
-    'pymongo',
-]
+REQUIRES = ["python-dotenv", "pymongo", "opencc-python-reimplemented"]
 
 setup(
     name="rsf",
@@ -27,5 +24,5 @@ setup(
     install_requires=REQUIRES,
     tests_require=["pytest"],
     packages=find_packages(),
-    entry_points={},
+    entry_points={"console_scripts": ["rsf-convert=rsf.convert:main_convert"]},
 )

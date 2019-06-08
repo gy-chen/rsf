@@ -1,8 +1,16 @@
 import enum
+import re
 import logging
 import xml.etree.ElementTree as ET
+from opencc import OpenCC
+from . import utils
 
 logger = logging.getLogger()
+
+cc = OpenCC("s2t")
+
+PATTERN_RELATED_WORDS = re.compile(r"===相關詞彙===(.*)", re.DOTALL)
+PATTERN_WORD = re.compile(r"\[\[(.*?)\]\]")
 
 
 class _State(enum.Enum):
@@ -62,6 +70,54 @@ def parse(wiktionary_xml_path):
                 current_page = None
             else:
                 logger.debug("ignore uninteresting end event elment {}".format(elem))
+
+
+def parse_word(page):
+    """parse word from page content
+
+    Arguments:
+        page (dict): in format {
+            "id": id of the page,
+            "title": "title of the page",
+            "text": "content of the page",
+        }
+
+    Raises:
+        ParsingError: if the page is not a word page
+
+    Returns:
+        dict in format {
+            "word": "word name",
+            "related": ["related word", ...]
+        }
+    """
+    if page["title"] is None or page["text"] is None:
+        raise ParsingError()
+    word = cc.convert(page["title"])
+    related_words_content = PATTERN_RELATED_WORDS.search(page["text"])
+    if not related_words_content:
+        raise ParsingError()
+    related_words_content = related_words_content.group(1)
+    words = _apply_filter(PATTERN_WORD.findall(related_words_content))
+    if not words:
+        raise ParsingError()
+    return {"word": word, "related": words}
+
+
+def _apply_filter(words):
+    filter_chain = [
+        utils.filter_exclude_punctuation,
+        utils.filter_exclude_empty,
+        _filter_to_traditional_chinese,
+    ]
+    for c in filter_chain:
+        words = c(words)
+    return list(words)
+
+
+def _filter_to_traditional_chinese(words):
+    for word in words:
+        yield cc.convert(word)
 
 
 class ParsingError(Exception):
