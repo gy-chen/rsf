@@ -10,7 +10,10 @@ with open("rsf/__init__.py", "r") as f:
     else:
         version = "0.0.1"
 
-REQUIRES = []
+REQUIRES = [
+    'python-dotenv',
+    'pymongo',
+]
 
 setup(
     name="rsf",
