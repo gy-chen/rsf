@@ -17,3 +17,9 @@ class ConvertConfig:
 
 class EncodeConfig:
     MONGO = MongoConfig
+
+
+class ExportConfig:
+    MONGO = MongoConfig
+    PATH = os.getenv("RSF_EXPORT_PATH", "./encodedWords.json")
+    PRETTY = bool(os.getenv("RSF_EXPORT_PRETTY", False))

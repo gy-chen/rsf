@@ -29,3 +29,7 @@ class Storage:
     def store_encoded_wiktionary_words(self, encoded_words):
         words_collection = self._db[self.COLLECTION_WORDS_ENCODED]
         words_collection.insert_many(encoded_words)
+
+    def get_export_encoded_words(self):
+        words_collection = self._db[self.COLLECTION_WORDS_ENCODED]
+        return words_collection.find(projection={"_id": 0})

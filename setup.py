@@ -28,6 +28,7 @@ setup(
         "console_scripts": [
             "rsf-convert=rsf.convert:main_convert",
             "rsf-encode=rsf.encode:main_encode",
+            "rsf-export=rsf.export:main_export",
         ]
     },
 )
