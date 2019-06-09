@@ -6,10 +6,10 @@
   "author": "<gy.chen@gms.nutc.edu.tw>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
-    "ts-loader": "^6.0.2",
-    "typescript": "^3.5.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3"
+    "typescript": "^3.5.1"
   }
 }
