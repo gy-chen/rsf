@@ -106,6 +106,7 @@ def parse_word(page):
 
 def _apply_filter(words):
     filter_chain = [
+        utils.filter_strip,
         utils.filter_exclude_punctuation,
         utils.filter_exclude_empty,
         _filter_to_traditional_chinese,

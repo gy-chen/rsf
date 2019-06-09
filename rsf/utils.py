@@ -13,6 +13,11 @@ def get_storage(config=MongoConfig):
     return Storage(db)
 
 
+def filter_strip(words):
+    for word in words:
+        yield word.strip()
+
+
 def filter_exclude_empty(words):
     for word in words:
         if not word:
