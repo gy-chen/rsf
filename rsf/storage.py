@@ -7,6 +7,7 @@ class Storage:
 
     COLLECTION_WIKTIONARY = "wiktionary"
     COLLECTION_WORDS = "words"
+    COLLECTION_WORDS_ENCODED = "encodedWords"
 
     def __init__(self, db):
         self._db = db
@@ -20,3 +21,11 @@ class Storage:
         words_collection = self._db[self.COLLECTION_WORDS]
         for word in words:
             words_collection.insert_one(word)
+
+    def get_wiktionary_words(self):
+        words_collection = self._db[self.COLLECTION_WORDS]
+        return words_collection.find()
+
+    def store_encoded_wiktionary_words(self, encoded_words):
+        words_collection = self._db[self.COLLECTION_WORDS_ENCODED]
+        words_collection.insert_many(encoded_words)

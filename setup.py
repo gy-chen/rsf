@@ -24,5 +24,10 @@ setup(
     install_requires=REQUIRES,
     tests_require=["pytest"],
     packages=find_packages(),
-    entry_points={"console_scripts": ["rsf-convert=rsf.convert:main_convert"]},
+    entry_points={
+        "console_scripts": [
+            "rsf-convert=rsf.convert:main_convert",
+            "rsf-encode=rsf.encode:main_encode",
+        ]
+    },
 )

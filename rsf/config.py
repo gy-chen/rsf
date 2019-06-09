@@ -13,3 +13,7 @@ class MongoConfig:
 class ConvertConfig:
     MONGO = MongoConfig
     WIKTIONARY_XML_PATH = os.getenv("RSF_WIKTIONARY_XML_PATH")
+
+
+class EncodeConfig:
+    MONGO = MongoConfig
