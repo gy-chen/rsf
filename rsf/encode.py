@@ -20,7 +20,7 @@ def encode(storage):
         for w in all_words:
             word = lookup.get(w, {})
             word["id"] = word_id[w]
-            word["name"] = w
+            word["word"] = w
             related = []
             for r in word.get("related", []):
                 related.append(word_id[r])
