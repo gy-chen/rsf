@@ -13,3 +13,11 @@ export const softmax = (x: number[]): number[] => {
     }
     return result;
 }
+
+export const getDefaultEncodedWords = () => {
+    const fs = require('fs');
+    const path = require('path');
+    const encodedWordsPath = path.resolve(__dirname, 'encodedWords.json');
+    const encodedWordsContent = fs.readFileSync(encodedWordsPath);
+    return JSON.parse(encodedWordsContent.toString());
+};
