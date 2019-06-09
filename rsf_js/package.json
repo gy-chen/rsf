@@ -1,12 +1,14 @@
 {
-  "name": "rsf_js",
+  "name": "related-sentence-finder",
   "version": "0.0.1",
   "description": "input a sentence, search a most related sentence in given sentences ",
   "repository": "https://github.com/gy-chen/rsf",
   "author": "<gy.chen@gms.nutc.edu.tw>",
   "license": "MIT",
-  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "tsc"
   },
   "devDependencies": {
