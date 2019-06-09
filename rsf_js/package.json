@@ -1,0 +1,15 @@
+{
+  "name": "rsf_js",
+  "version": "0.0.1",
+  "description": "input a sentence, search a most related sentence in given sentences ",
+  "repository": "https://github.com/gy-chen/rsf",
+  "author": "<gy.chen@gms.nutc.edu.tw>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3"
+  }
+}

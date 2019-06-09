@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es5",
+        "strict": true,
+        "removeComments": true,
+        "sourceMap": true
+    }
+}
